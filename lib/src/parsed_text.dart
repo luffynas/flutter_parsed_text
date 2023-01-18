@@ -68,6 +68,9 @@ class ParsedText extends StatefulWidget {
   /// onTap function for the whole widget
   final Function? onTap;
 
+  /// onTapReadMore function for handle isShow
+  final Function()? onTapReadMore;
+
   /// Global regex options for the whole string,
   ///
   /// Note: Removed support for regexOptions for MatchText and now it uses global regex options.
@@ -123,6 +126,7 @@ class ParsedText extends StatefulWidget {
     this.textWidthBasis = TextWidthBasis.parent,
     this.maxLines,
     this.onTap,
+    this.onTapReadMore,
     this.selectable = false,
     this.isLoadMore = true,
     required this.text,
@@ -408,7 +412,7 @@ class ParsedTextState extends State<ParsedText> {
           ),
           widget.isLoadMore && isShowReadMore
               ? InkWell(
-                  onTap: _onTapLink,
+                  onTap: widget.onTapReadMore ?? _onTapLink,
                   child: !_readMore
                       ? Text(
                           widget.trimExpandedText,
